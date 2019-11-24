@@ -16,7 +16,7 @@
           <text value="Приложение для копирования файлов"/>
         </properties>
       </component>
-      <grid id="33cd2" binding="OpenFileJPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+      <grid id="33cd2" binding="OpenFileJPanel" layout-manager="BorderLayout" hgap="5" vgap="5">
         <constraints/>
         <properties>
           <minimumSize width="250" height="60"/>
@@ -27,7 +27,7 @@
           <component id="63baa" class="javax.swing.JLabel" binding="titleOpenFile">
             <constraints border-constraint="West"/>
             <properties>
-              <text value="Путь: "/>
+              <text value="Path:"/>
             </properties>
           </component>
           <component id="6658" class="javax.swing.JTextField" binding="titlePathOriginal">
@@ -47,13 +47,13 @@
           <component id="855db" class="javax.swing.JLabel" binding="titlePleaseOpenFile">
             <constraints border-constraint="North"/>
             <properties>
-              <horizontalAlignment value="0"/>
-              <text value="Выберите Файл/Папку для копирования"/>
+              <horizontalAlignment value="2"/>
+              <text value="Укажите Файл/Папку для копирования"/>
             </properties>
           </component>
         </children>
       </grid>
-      <grid id="19c4b" binding="CloneJPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+      <grid id="19c4b" binding="CloneJPanel" layout-manager="BorderLayout" hgap="5" vgap="5">
         <constraints/>
         <properties>
           <minimumSize width="450" height="60"/>
@@ -66,7 +66,7 @@
             <properties>
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
-              <text value="Путь: "/>
+              <text value="Path:"/>
             </properties>
           </component>
           <component id="ae582" class="javax.swing.JTextField" binding="titlePathClone">
@@ -86,13 +86,34 @@
           <component id="810d8" class="javax.swing.JLabel" binding="titlePleaseClone">
             <constraints border-constraint="North"/>
             <properties>
-              <horizontalAlignment value="0"/>
-              <text value="Выберите куда необходимо скопировать файлы"/>
+              <horizontalAlignment value="2"/>
+              <text value="Укажите куда необходимо скопировать файлы"/>
             </properties>
           </component>
         </children>
       </grid>
-      <grid id="96666" binding="LogJPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+      <grid id="3c6bc" binding="SettingJPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints/>
+        <properties>
+          <preferredSize width="300" height="60"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="95c4e" class="javax.swing.JCheckBox" binding="checkClone">
+            <constraints border-constraint="North"/>
+            <properties>
+              <text value="Проверить файлы после копирования"/>
+            </properties>
+          </component>
+          <component id="bac15" class="javax.swing.JLabel" binding="titleLogCheck">
+            <constraints border-constraint="Center"/>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="96666" binding="LogJPanel" layout-manager="BorderLayout" hgap="5" vgap="5">
         <constraints/>
         <properties>
           <preferredSize width="300" height="60"/>
@@ -108,6 +129,8 @@
           <component id="ab1aa" class="javax.swing.JButton" binding="startWork">
             <constraints border-constraint="North"/>
             <properties>
+              <maximumSize width="1520" height="30"/>
+              <preferredSize width="220" height="30"/>
               <text value="Начать копирование"/>
             </properties>
           </component>

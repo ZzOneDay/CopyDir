@@ -1,8 +1,9 @@
 import java.io.*;
 
 class CopyCore {
+
     static void copy(File original, String targetPath) throws Exception {
-        System.out.println("Копирование файла: " + original.getName() + " : " + original.getPath());
+        System.out.println("Копирование файла: " + original.getName() + " path: " + original.getPath());
         if (!original.isDirectory()) {
             FileInputStream fileInputStream = new FileInputStream(original.getPath());
             FileOutputStream fileOutputStream = new FileOutputStream(targetPath + "\\" + original.getName());
@@ -17,6 +18,4 @@ class CopyCore {
             }
         }
     }
-
-
 }

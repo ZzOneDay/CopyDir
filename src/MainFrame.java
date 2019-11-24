@@ -17,6 +17,9 @@ public class MainFrame {
     JLabel titlePleaseClone;
     private JButton OpenPathClone;
     private JButton startWork;
+    JPanel SettingJPanel;
+    private JCheckBox checkClone;
+    private JLabel titleLogCheck;
 
 
     MainFrame() {
@@ -24,14 +27,14 @@ public class MainFrame {
         JFileChooser cloneFile = new JFileChooser();
 
         OpenButton.addActionListener(e -> {
-            openFile.setDialogTitle("Выбор файл или директорию");
+            openFile.setDialogTitle("Выборерите файл или директорию для копирования");
             openFile.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
             openFile.showOpenDialog(rootPanel);
             titlePathOriginal.setText(openFile.getSelectedFile().getPath());
         });
 
         OpenPathClone.addActionListener(e -> {
-            cloneFile.setDialogTitle("Выбор директории");
+            cloneFile.setDialogTitle("Выборерите куда необходимо произвести копирование");
             cloneFile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             cloneFile.showOpenDialog(rootPanel);
             titlePathClone.setText(cloneFile.getSelectedFile().getPath());
@@ -39,18 +42,20 @@ public class MainFrame {
 
         startWork.addActionListener(e -> {
             try {
-                CopyCore.copy(openFile.getSelectedFile(),cloneFile.getSelectedFile().getPath());
-                if (SizeCore.checkFiles(openFile.getSelectedFile(),
-                        new File(cloneFile.getSelectedFile().getPath() + "\\"+ openFile.getSelectedFile().getName()))) {
-                    logString.setText("Копирование прошло успешно");
+                logString.setText("");
+                titleLogCheck.setText("");
+                CopyCore.copy(openFile.getSelectedFile(), cloneFile.getSelectedFile().getPath());
+                if (checkClone.isSelected()) {
+                    if (SizeCore.checkFiles(openFile.getSelectedFile(),
+                            new File(cloneFile.getSelectedFile().getPath() + "\\" + openFile.getSelectedFile().getName()))) {
+                        titleLogCheck.setText("Проверка выполнена успешно");
+                    } else {
+                        JOptionPane.showMessageDialog(rootPanel,
+                                "Ошибка при проверке файлов");
+                        logString.setText("Внимание! Не совпадет размер исходного материала с копированным");
+                    }
                 }
-                else
-                { JOptionPane.showMessageDialog(rootPanel,
-                            "Ошибка при проверке файлов");
-                 logString.setText("Внимание! Не совпадет размер исходного материала с копированным");
-                }
-
-
+                logString.setText("Копирование завершено");
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(rootPanel,
                         "Произошла ошибка: " + ex.getLocalizedMessage());
