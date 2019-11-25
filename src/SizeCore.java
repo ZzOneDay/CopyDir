@@ -3,7 +3,7 @@ import java.io.File;
 class SizeCore {
     static boolean checkFiles(File original, File clone) {
         System.out.println("original " + original.getName() + " - > " + original.getPath());
-        System.out.println("clone " + clone.getName() + " - >" + clone.getPath());
+        System.out.println("clone " + clone.getName() + " - > " + clone.getPath());
         return sizeFile(original) == sizeFile(clone);
     }
 

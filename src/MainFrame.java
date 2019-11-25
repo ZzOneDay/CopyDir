@@ -44,15 +44,19 @@ public class MainFrame {
             try {
                 logString.setText("");
                 titleLogCheck.setText("");
+                if (!CopyCore.copyIsCorrect(openFile.getSelectedFile(),cloneFile.getSelectedFile().getPath())) {
+                    throw new Exception("Конечная папка, в которую следует скопировать файлы," +
+                            "\nявляется дочерней для папки, в которой они находятся.");
+                }
                 CopyCore.copy(openFile.getSelectedFile(), cloneFile.getSelectedFile().getPath());
                 if (checkClone.isSelected()) {
                     if (SizeCore.checkFiles(openFile.getSelectedFile(),
-                            new File(cloneFile.getSelectedFile().getPath() + "\\" + openFile.getSelectedFile().getName()))) {
+                            new File(cloneFile.getSelectedFile().getPath()
+                                    + "\\" + openFile.getSelectedFile().getName()))) {
                         titleLogCheck.setText("Проверка выполнена успешно");
                     } else {
-                        JOptionPane.showMessageDialog(rootPanel,
-                                "Ошибка при проверке файлов");
-                        logString.setText("Внимание! Не совпадет размер исходного материала с копированным");
+                        throw new Exception("Проверка файлов прошла не корректно!" +
+                                "\nРазмер исходника отличается от созданной копии!");
                     }
                 }
                 logString.setText("Копирование завершено");
