@@ -44,11 +44,12 @@ public class MainFrame {
             try {
                 logString.setText("");
                 titleLogCheck.setText("");
-                if (!CopyCore.copyIsCorrect(openFile.getSelectedFile(),cloneFile.getSelectedFile().getPath())) {
-                    throw new Exception("Конечная папка, в которую следует скопировать файлы," +
-                            "\nявляется дочерней для папки, в которой они находятся.");
-                }
-                CopyCore.copy(openFile.getSelectedFile(), cloneFile.getSelectedFile().getPath());
+//                if (!CopyCore.copyIsCorrect(openFile.getSelectedFile(),cloneFile.getSelectedFile().getPath())) {
+//                    throw new Exception("Конечная папка, в которую следует скопировать файлы," +
+//                            "\nявляется дочерней для папки, в которой они находятся.");
+//                }
+                CopyCore copyCore = new CopyCore(openFile.getSelectedFile());
+                copyCore.copy(cloneFile.getSelectedFile());
                 if (checkClone.isSelected()) {
                     if (SizeCore.checkFiles(openFile.getSelectedFile(),
                             new File(cloneFile.getSelectedFile().getPath()
