@@ -20,6 +20,7 @@ public class MainFrame {
     JPanel SettingJPanel;
     private JCheckBox checkClone;
     private JLabel titleLogCheck;
+    private JCheckBox checkCorrectPath;
 
 
     MainFrame() {
@@ -44,10 +45,12 @@ public class MainFrame {
             try {
                 logString.setText("");
                 titleLogCheck.setText("");
-//                if (!CopyCore.copyIsCorrect(openFile.getSelectedFile(),cloneFile.getSelectedFile().getPath())) {
-//                    throw new Exception("Конечная папка, в которую следует скопировать файлы," +
-//                            "\nявляется дочерней для папки, в которой они находятся.");
-//                }
+                if (!checkCorrectPath.isSelected() && !CopyCore.copyIsCorrect(openFile.getSelectedFile(), cloneFile.getSelectedFile().getPath())) {
+                    throw new Exception("Конечная папка, в которую следует скопировать файлы," +
+                            "\nявляется дочерней для папки, в которой они находятся." +
+                            "\nДля реализации данного копирования, " +
+                            "\nукажите флажок в пунке: Разрешить копирование в дочерную папку");
+                }
                 CopyCore copyCore = new CopyCore(openFile.getSelectedFile());
                 copyCore.copy(cloneFile.getSelectedFile());
                 if (checkClone.isSelected()) {
@@ -56,8 +59,10 @@ public class MainFrame {
                                     + "\\" + openFile.getSelectedFile().getName()))) {
                         titleLogCheck.setText("Проверка выполнена успешно");
                     } else {
-                        throw new Exception("Проверка файлов прошла не корректно!" +
-                                "\nРазмер исходника отличается от созданной копии!");
+                        if (!checkCorrectPath.isSelected()) {
+                            throw new Exception("Проверка файлов прошла не корректно!" +
+                                    "\nРазмер исходника отличается от созданной копии!");
+                        }
                     }
                 }
                 logString.setText("Копирование завершено");
